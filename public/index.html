@@ -1,0 +1,79 @@
+﻿<!doctype>
+<html ng-app>
+<head>
+    <title>Contact List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" ng-controller="AppCtrl">
+        <h1>Create Contact</h1>
+
+        <div class="form-inline">
+             
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputEmail3">Name</label>
+                <input type="text" class="form-control" id="firstName" ng-model="contact.name" value="Lorem" placeholder="FirstName">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputPassword3">LastName</label>
+                <input type="text" class="form-control" id="lastName" ng-model="contact.lastName" value="Ipsum" placeholder="LastName">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputPassword3">Age</label>
+                <input type="number" class="form-control" id="age" ng-model="contact.age" value="0" placeholder="Age">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputPassword3">Email</label>
+                <input type="text" class="form-control" id="Email" ng-model="contact.email" value="test@gmail.com" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputPassword3">Location</label>
+                <input type="text" class="form-control" id="Location" ng-model="contact.location" value="dummy" placeholder="Location">
+            </div>
+            <button class="btn btn-primary" ng-click="createContact()" ng-show="createBtn_visible">Create</button>
+            <button class="btn btn-primary" ng-click="updateContact(contact._id)" ng-show="updateBtn_visible">Update</button>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-3">Name : {{ contact.name +' - '+contact.lastName }} </div>
+            <div class="col-lg-3">Age : {{ contact.age}} </div>
+            <div class="col-lg-3">Email :{{ contact.email}} </div>
+            <div class="col-lg-3">Location : {{ contact.location}} </div>
+        </div>
+        <br />
+        <h1>Contact List</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="contact in contactList">
+                <tr>
+                    <td></td>
+                    <td>{{ contact.name +" "+ contact.lastName }}</td>
+                    <td>{{ contact.age }}</td>
+                    <td>{{ contact.email }}</td>
+                    <td>
+                        <!-- Contextual button for informational alert messages -->
+                        <button type="button" class="btn btn-info" ng-click="editContact(contact._id)"><span class="glyphicon glyphicon-pencil"></span></button>
+
+                        <!-- Indicates a dangerous or potentially negative action -->
+                        <button type="button" class="btn btn-danger" ng-click="deleteContact(contact._id)"><span class="glyphicon glyphicon-trash"></span></button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.29/angular.min.js"></script>
+    <script type="text/javascript" src="controller/controller.js"></script>
+</body>
+
+
+</html>
